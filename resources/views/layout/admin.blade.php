@@ -8,6 +8,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="{{asset('windmill-dashboard/public/assets/css/tailwind.output.css')}}" />
     <link rel="stylesheet" href="{{asset('windmill-dashboard/public/assets/css/tailwind.css')}}" />
     <script
@@ -15,6 +16,7 @@
       defer
     ></script>
     <script src="{{asset('windmill-dashboard/public/assets/js/init-alpine.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('assets/style.css')}}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
@@ -23,12 +25,14 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
       defer
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <script src="{{asset('windmill-dashboard/public/assets/js/charts-lines.js')}}" defer></script>
     <script src="{{asset('windmill-dashboard/public/assets/js/charts-pie.js')}}" defer></script>
     <script src="{{asset('windmill-dashboard/public/assets/js/charts-bars.js')}}" defer></script>
     <script src="{{asset('windmill-dashboard/public/assets/js/focus-trap.js')}}" defer></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   </head>
   <body>
     @include('sweetalert::alert')

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminJadwalController;
+use App\Http\Controllers\Admin\AdminJadwalDoa;
+use App\Http\Controllers\Admin\AdminKategoriJadwal;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LandingController;
@@ -40,6 +42,18 @@ Route::middleware(['auth'])->group(function () {
 
         Route::prefix('admin-jadwal')->name('admin.jadwal.')->controller(AdminJadwalController::class)->group(function(){
             Route::get('/', 'index')->name('index');
+        });
+
+        Route::prefix('admin-kategori-jadwal')->name('admin.kategori.')->controller(AdminKategoriJadwal::class)->group(function(){
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('admin-jadwal-doa')->name('admin.jadwal-doa.')->controller(AdminJadwalDoa::class)->group(function(){
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
         });
     });
     Route::middleware(['role:2'])->group(function () {

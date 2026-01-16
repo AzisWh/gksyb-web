@@ -44,6 +44,14 @@ body {
     color: var(--clr-accent) !important;
 }
 
+.bg-secondary {
+    background-color: var(--clr-secondary) !important;
+}
+
+.bg-secondary-hover:hover {
+    background-color: var(--clr-accent) !important;
+}
+
 .color-dominant {
     color: var(--clr-dominant) !important;
 }
