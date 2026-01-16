@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminEkaristiController;
 use App\Http\Controllers\Admin\AdminJadwalController;
 use App\Http\Controllers\Admin\AdminJadwalDoa;
 use App\Http\Controllers\Admin\AdminKategoriJadwal;
+use App\Http\Controllers\Admin\AdminProfileGereja;
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\DokParokiController;
+use App\Http\Controllers\Admin\KategoriDokParoki;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
@@ -50,9 +54,39 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/destroy/{id}', 'destroy')->name('destroy');
         });
 
-        Route::prefix('admin-jadwal-doa')->name('admin.jadwal-doa.')->controller(AdminJadwalDoa::class)->group(function(){
+        Route::prefix('admin-jadwal-doa')->name('admin.jadwal.')->controller(AdminJadwalDoa::class)->group(function(){
             Route::post('/store', 'store')->name('store');
             Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('admin-dokumen-paroki')->name('admin.dokparoki.')->controller(DokParokiController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/download/{id}', 'download')->name('download');
+            // Route::get('/preview/{id}', 'preview')->name('preview');
+            Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        }); 
+
+        Route::prefix('admin-kategori-dokumen-paroki')->name('admin.kategoridokparoki.')->controller(KategoriDokParoki::class)->group(function(){
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('admin-ekaristi')->name('admin.ekaristi.')->controller(AdminEkaristiController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+            Route::get('/download/{id}', 'download')->name('download');
+        });
+
+        Route::prefix('admin-profile-gereja')->name('admin.gereja.')->controller(AdminProfileGereja::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/update/{id}', 'update')->name('update');
             Route::delete('/destroy/{id}', 'destroy')->name('destroy');
         });
     });

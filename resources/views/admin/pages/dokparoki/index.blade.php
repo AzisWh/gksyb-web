@@ -1,12 +1,11 @@
 @extends('layout.admin')
 
-@section('title', 'Dashboard Sekre')
+@section('title', 'Dokumen Paroki')
 
 @section('content')
-
 <div class="flex flex-col justify-start text-left fs-style-manrope py-4">
-    <h1 class="text-lg">Jadwal Ibadat & Devosi</h1>
-    <p class="text-sm">Kelola jadwal Misa, doa, dan perayaan liturgi Paroki Bintaran</p>
+    <h1 class="text-lg">Dokumen Paroki</h1>
+    <p class="text-sm">Kelola dan simpan dokumen penting Paroki Bintaran</p>
 </div>
 <div 
     x-data="{ tab: 'semua' }"
@@ -18,7 +17,7 @@
             :class="tab === 'semua' ? 'border-[#3E0703] text-[#3E0703]' : 'text-gray-500'"
             class="px-6 py-3 text-sm font-medium transition border-b-2"
         >
-            Semua Jadwal
+            Semua Dokumen
         </button>
 
         <button
@@ -26,7 +25,7 @@
             :class="tab === 'tambah' ? 'border-[#3E0703] text-[#3E0703]' : 'text-gray-500'"
             class="px-6 py-3 text-sm font-medium transition border-b-2"
         >
-            Tambah Jadwal
+            Tambah Dokumen
         </button>
 
         <button
@@ -40,15 +39,15 @@
 
     <div class="p-6">
         <div x-show="tab === 'semua'" x-transition>
-            @include('admin.pages.jadwal.semua')
+            @include('admin.pages.dokparoki.semua')
         </div>
 
         <div x-show="tab === 'tambah'" x-transition>
-            @include('admin.pages.jadwal.tambah')
+            @include('admin.pages.dokparoki.tambah')
         </div>
 
         <div x-show="tab === 'kategori'" x-transition>
-            @include('admin.pages.jadwal.kategori')
+            @include('admin.pages.dokparoki.kategori')
         </div>
     </div>
 </div>

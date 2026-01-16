@@ -44,7 +44,7 @@
                 </a>
             </li>
           </ul>
-          <ul class="mt-6">
+          <ul class="">
             <p class="text-sm font-thin text-center text-gray-500 uppercase">Konten dan publikasi</p>
             <li class="relative px-6 py-3">
                @if(request()->routeIs('admin.jadwal.*'))
@@ -70,6 +70,92 @@
                   <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
                 </svg>
                 <span class="ml-4">Jadwal Doa dan Perayaan Ekaristi</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="">
+            <p class="text-sm font-thin text-center text-gray-500 uppercase">Dokumen dan media</p>
+            <li class="relative px-6 py-3">
+               @if(request()->routeIs('admin.dokparoki.*'))
+                    <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                @endif
+              <a
+                    href="{{ route('admin.dokparoki.index') }}"
+                    class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                    {{ request()->routeIs('admin.dokparoki.*')
+                        ? 'text-[#3E0703] bg-[#FFF3F2]'
+                        : 'text-gray-700 hover:bg-[#FFF3F2]'
+                    }}"
+              >
+                <svg 
+                  class="w-5 h-5" 
+                  aria-hidden="true" 
+                  fill="none" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" > 
+                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
+                </svg>
+                <span class="ml-4">Dokumen Paroki</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="">
+            <li class="relative px-6 ">
+               @if(request()->routeIs('admin.ekaristi.*'))
+                    <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                @endif
+              <a
+                    href="{{ route('admin.ekaristi.index') }}"
+                    class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                    {{ request()->routeIs('admin.ekaristi.*')
+                        ? 'text-[#3E0703] bg-[#FFF3F2]'
+                        : 'text-gray-700 hover:bg-[#FFF3F2]'
+                    }}"
+              >
+                <svg 
+                  class="w-5 h-5" 
+                  aria-hidden="true" 
+                  fill="none" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" > 
+                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
+                </svg>
+                <span class="ml-4">Panduan Perayaan Ekaristi</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="mt-6">
+            <p class="text-sm font-thin text-center text-gray-500 uppercase">Profil gereja</p>
+            <li class="relative px-6 py-3">
+               @if(request()->routeIs('admin.gereja.*'))
+                    <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                @endif
+              <a
+                    href="{{ route('admin.gereja.index') }}"
+                    class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                    {{ request()->routeIs('admin.gereja.*')
+                        ? 'text-[#3E0703] bg-[#FFF3F2]'
+                        : 'text-gray-700 hover:bg-[#FFF3F2]'
+                    }}"
+              >
+                <svg 
+                  class="w-5 h-5" 
+                  aria-hidden="true" 
+                  fill="none" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" > 
+                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
+                </svg>
+                <span class="ml-4">Profil Gereja</span>
               </a>
             </li>
           </ul>

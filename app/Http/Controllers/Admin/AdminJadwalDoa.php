@@ -61,7 +61,6 @@ class AdminJadwalDoa extends Controller
                 'waktu',
                 'lokasi',
                 'keterangan',
-                'is_active'
             ]);
 
             if ($request->has('is_active')) {

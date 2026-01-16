@@ -1,20 +1,20 @@
 @font-face {
     font-family: 'Literata';
-    src: url('/assets/font/Literata-VariableFont_opsz,wght.ttf') format('truetype');
+    src: url('/font/Literata-VariableFont_opsz\,wght.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Literata';
-    src: url('/assets/font/Literata-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+    src: url('/font/Literata-Italic-VariableFont_opsz\,wght.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Manrope';
-    src: url('/assets/font/Manrope-VariableFont_wght.ttf') format('truetype');
+    src: url('/font/Manrope-VariableFont_wght.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }

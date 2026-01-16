@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\PostTooLargeException;
+use RealRashid\SweetAlert\Facades\Alert;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -27,4 +29,15 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof PostTooLargeException) {
+            Alert::error('Gagal', 'Ukuran total upload terlalu besar (maks 5MB)');
+            return back();
+        }
+
+        return parent::render($request, $e);
+    }
+
 }
