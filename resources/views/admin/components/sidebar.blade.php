@@ -159,6 +159,62 @@
               </a>
             </li>
           </ul>
+          <ul class="">
+            <li class="relative px-6 py-3">
+               @if(request()->routeIs('admin.sakramen.*'))
+                    <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                @endif
+              <a
+                    href="{{ route('admin.sakramen.index') }}"
+                    class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                    {{ request()->routeIs('admin.sakramen.*')
+                        ? 'text-[#3E0703] bg-[#FFF3F2]'
+                        : 'text-gray-700 hover:bg-[#FFF3F2]'
+                    }}"
+              >
+                <svg 
+                  class="w-5 h-5" 
+                  aria-hidden="true" 
+                  fill="none" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" > 
+                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
+                </svg>
+                <span class="ml-4">Sakramen Gereja Katolik</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="">
+            <li class="relative px-6 py-3">
+               @if(request()->routeIs('admin.donasi.*'))
+                    <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                @endif
+              <a
+                    href="{{ route('admin.donasi.index') }}"
+                    class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                    {{ request()->routeIs('admin.donasi.*')
+                        ? 'text-[#3E0703] bg-[#FFF3F2]'
+                        : 'text-gray-700 hover:bg-[#FFF3F2]'
+                    }}"
+              >
+                <svg 
+                  class="w-5 h-5" 
+                  aria-hidden="true" 
+                  fill="none" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" > 
+                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
+                </svg>
+                <span class="ml-4">Donasi & Sumbangan</span>
+              </a>
+            </li>
+          </ul>
           <ul>
             <li class="relative px-6 py-3">
               <button

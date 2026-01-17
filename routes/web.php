@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDonasiController;
 use App\Http\Controllers\Admin\AdminEkaristiController;
 use App\Http\Controllers\Admin\AdminJadwalController;
 use App\Http\Controllers\Admin\AdminJadwalDoa;
 use App\Http\Controllers\Admin\AdminKategoriJadwal;
 use App\Http\Controllers\Admin\AdminProfileGereja;
+use App\Http\Controllers\Admin\AdminSakramenController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\DokParokiController;
 use App\Http\Controllers\Admin\KategoriDokParoki;
@@ -88,6 +90,25 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store', 'store')->name('store');
             Route::post('/update/{id}', 'update')->name('update');
             Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('admin-sakramen')->name('admin.sakramen.')->controller(AdminSakramenController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/update/{id}', 'update')->name('update');
+            Route::delete('/delete/{id}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('admin-donasi')->name('admin.donasi.')->controller(AdminDonasiController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            // tf
+            Route::post('/transfer/store', 'storeTransfer')->name('transfer.store');
+            Route::patch('/transfer/edit/{id}', 'EditTransfer')->name('transfer.edit');
+            Route::delete('/transfer/destroy/{id}', 'DestroyTransfer')->name('transfer.destroy');
+            // qr
+            Route::post('/qr/store', 'StoreQrCode')->name('qr.store');
+            Route::patch('/qr/edit/{id}', 'UpdateQrCode')->name('qr.edit');
+            Route::delete('/qr/destroy/{id}', 'DestroyQrCode')->name('qr.destroy');
         });
     });
     Route::middleware(['role:2'])->group(function () {
