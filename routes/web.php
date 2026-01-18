@@ -5,11 +5,18 @@ use App\Http\Controllers\Admin\AdminEkaristiController;
 use App\Http\Controllers\Admin\AdminJadwalController;
 use App\Http\Controllers\Admin\AdminJadwalDoa;
 use App\Http\Controllers\Admin\AdminKategoriJadwal;
+use App\Http\Controllers\Admin\AdminKontakController;
+use App\Http\Controllers\Admin\AdminPastorParoki;
 use App\Http\Controllers\Admin\AdminProfileGereja;
 use App\Http\Controllers\Admin\AdminSakramenController;
+use App\Http\Controllers\Admin\AdminTerhubungController;
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\DoaController;
 use App\Http\Controllers\Admin\DokParokiController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\identitasController;
 use App\Http\Controllers\Admin\KategoriDokParoki;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
@@ -109,6 +116,50 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/qr/store', 'StoreQrCode')->name('qr.store');
             Route::patch('/qr/edit/{id}', 'UpdateQrCode')->name('qr.edit');
             Route::delete('/qr/destroy/{id}', 'DestroyQrCode')->name('qr.destroy');
+        });
+
+        Route::prefix('admin-pastor-paroki')->name('admin.paroki.')->controller(AdminPastorParoki::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('admin-terhubung')->name('admin.terhubung.')->controller(AdminTerhubungController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::patch('/update-status/{id}', 'updateStatus')->name('update.status');
+        });
+
+        Route::prefix('admin-doa')->name('admin.doa.')->controller(DoaController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::patch('/update-status/{id}', 'updateStatus')->name('update.status');
+        });
+
+        Route::prefix('admin-faq')->name('admin.faq.')->controller(FaqController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/kategori/store', 'storeKategori')->name('kategori.store');
+            Route::patch('/kategori/update/{id}', 'updateKategori')->name('kategori.update');
+            Route::delete('/kategori/destroy/{id}', 'destroyKategori')->name('kategori.destroy');
+            Route::post('/faq/store', 'storeFaq')->name('store');
+            Route::patch('/faq/update/{id}', 'updateFaq')->name('update');
+            Route::delete('/faq/destroy/{id}', 'destroyFaq')->name('destroy');
+        });
+
+        Route::prefix('admin-settings')->name('admin.settings.')->controller(SettingsController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+        });
+
+        Route::prefix('admin-identitas')->name('admin.identitas.')->controller(identitasController::class)->group(function(){
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('admin/kontak')->name('admin.kontak.')->group(function () {
+            Route::post('/store', [AdminKontakController::class, 'store'])->name('store');
+            Route::post('/jam/store', [AdminKontakController::class, 'storeJam'])->name('jam.store');
+            Route::put('/jam/{id}', [AdminKontakController::class, 'updateJam'])->name('jam.update');
+            Route::delete('/jam/{id}', [AdminKontakController::class, 'destroyJam'])->name('jam.destroy');
         });
     });
     Route::middleware(['role:2'])->group(function () {

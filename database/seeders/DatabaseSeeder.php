@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            UserSeed::class,
+            // UserSeed::class,
+            // terhubungseed::class,
+            DoaSeed::class,
         ]);
     }
 }
