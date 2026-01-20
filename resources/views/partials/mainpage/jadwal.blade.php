@@ -1,3 +1,28 @@
+@php
+    function getTab($text) {
+        $t = strtolower($text);
+
+        if (str_contains($t, 'senin') || str_contains($t, 'selasa') || str_contains($t, 'rabu') || str_contains($t, 'kamis') || str_contains($t, 'jumat')) {
+            return 'harian';
+        }
+
+        if (str_contains($t, 'sabtu') || str_contains($t, 'minggu')) {
+            return 'mingguan';
+        }
+
+        if (str_contains($t, 'doa') || str_contains($t, 'devosi') || str_contains($t, 'rosario')) {
+            return 'doa';
+        }
+
+        if (str_contains($t, 'perayaan') || str_contains($t, 'khusus')) {
+            return 'perayaan';
+        }
+
+        return 'harian';
+    }
+@endphp
+
+
 <section class="w-full bg-[#3a0d0d] text-white py-16 fs-style-manrope" data-aos="fade-up">
     <div class="container mx-auto px-4">
 
@@ -30,50 +55,79 @@
 
             <!-- === TAB: HARIAN === -->
             <div class="tab-pane" id="harian">
+                @foreach($jadwal as $j)
+                    @if(getTab($j->hari) == 'harian')
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div>
+                            <p class="font-semibold">{{ $j->hari }}</p>
+                            <p class="text-sm mt-1">{{ $j->waktu }} WIB</p>
+                            <p class="text-xs opacity-80">{{ $j->lokasi }}</p>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <p class="font-semibold mb-2">{{ $j->nama_jadwal }}</p>
+                            <p class="text-sm leading-relaxed">
+                                {{ $j->keterangan }}
+                            </p>
+                        </div>
+                    </div>
+                    @else
+                        <h1 class="text-center">belum ada jadwal</h1>
+                    @endif
+                @endforeach
+            </div>
+            <!-- === TAB: MINGGUAN === -->
+            <div class="tab-pane hidden" id="mingguan">
+            @foreach($jadwal as $j)
+                @if(getTab($j->hari) == 'mingguan')
                 <div class="grid md:grid-cols-3 gap-6 mb-6">
                     <div>
-                        <p class="font-semibold">Senin - Jumat</p>
-                        <p class="text-sm mt-1">06.30 WIB</p>
+                        <p class="font-semibold">{{ $j->hari }}</p>
+                        <p class="text-sm mt-1">{{ $j->waktu }} WIB</p>
                     </div>
 
                     <div class="md:col-span-2">
-                        <p class="font-semibold mb-2">Misa Harian</p>
-                        <p class="text-sm leading-relaxed">
-                            Melalui Perayaan Misa Harian, umat Gereja Santo Yusup Bintaran diajak setia
-                            berjumpa dengan Tuhan dalam doa dan Ekaristi setiap hari.
-                        </p>
+                        <p class="font-semibold mb-2">{{ $j->nama_jadwal }}</p>
+                        <p class="text-sm">{{ $j->keterangan }}</p>
                     </div>
                 </div>
+                @else
+                    <h1 class="text-center">belum ada jadwal</h1>
+                @endif
+            @endforeach
+        </div>
 
-                <p class="text-right text-xs opacity-80">Bahasa Indonesia</p>
-
-                <!-- Catatan -->
-                <div class="bg-white/10 rounded-xl p-6 mt-6">
-                    <h4 class="font-semibold mb-3">Catatan Penting</h4>
-                    <ul class="text-sm space-y-1 list-disc pl-4">
-                        <li>Harap datang 15 menit sebelum misa dimulai untuk menjaga ketertiban dan kekhusyukan ibadah.</li>
-                        <li>Untuk misa pernikahan, baptis, atau acara khusus, silakan hubungi Sekretariat Paroki. Jadwal Misa Hari Raya dapat berubah sesuai kalender liturgi Gereja.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- === TAB: MINGGUAN === -->
-            <div class="tab-pane hidden" id="mingguan">
-                <p class="font-semibold text-lg">Jadwal Mingguan</p>
-                <p class="opacity-80 text-sm">konten jadwal mingguan…</p>
-            </div>
 
             <!-- === TAB: DOA & DEVOSI === -->
             <div class="tab-pane hidden" id="doa">
-                <p class="font-semibold text-lg">Jadwal Doa & Devosi</p>
-                <p class="opacity-80 text-sm">konten doa dan devosi…</p>
+                @foreach($jadwal as $j)
+                    @if(getTab($j->hari) == 'doa')
+                        <div class="mb-4">
+                            <p class="font-semibold">{{ $j->nama_jadwal }}</p>
+                            <p class="text-sm">{{ $j->hari }} - {{ $j->waktu }}</p>
+                            <p class="text-xs">{{ $j->keterangan }}</p>
+                        </div>
+                    @else
+                        <h1 class="text-center">belum ada jadwal</h1>
+                    @endif
+                @endforeach
             </div>
+
 
             <!-- === TAB: PERAYAAN === -->
             <div class="tab-pane hidden" id="perayaan">
-                <p class="font-semibold text-lg">Jadwal Perayaan</p>
-                <p class="opacity-80 text-sm">konten perayaan…</p>
+                @foreach($jadwal as $j)
+                    @if(getTab($j->hari) == 'perayaan')
+                        <div class="mb-4">
+                            <p class="font-semibold">{{ $j->nama_jadwal }}</p>
+                            <p class="text-sm">{{ $j->hari }} - {{ $j->waktu }}</p>
+                        </div>
+                    @else
+                        <h1 class="text-center">belum ada jadwal</h1>
+                    @endif
+                @endforeach
             </div>
+
         </div>
 
     </div>

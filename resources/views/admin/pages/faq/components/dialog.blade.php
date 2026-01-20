@@ -11,7 +11,7 @@
         </button>
     </div>
 
-    <form id="formEdit" method="POST">
+    <form id="formKategori" method="POST">
         @csrf
         @method('PATCH')
 

@@ -41,7 +41,7 @@ class AuthController extends Controller
             }
             else if(Auth::user()->role_type==2){
                 Alert::success('Hore!', 'Login berhasil');
-                // return redirect()->route('home.warga');
+                return redirect()->route('admin.dashboard.index');
             }
             return redirect()->route('login.index');
         }

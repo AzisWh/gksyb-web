@@ -16,5 +16,10 @@ class DoaModel extends Model
         'isi_doa',
         'tanggal_doa',
         'status',
+        'asal_paroki',
+        'asal_lingkungan',
+        'nomor_telepon',
+        'jenis_permohonan',
+        
     ];
 }

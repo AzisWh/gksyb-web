@@ -24,7 +24,7 @@
                 </p>
 
                 <div class="text-center">
-                    <a href="#" class="font-semibold text-[#8B2C2C] hover:underline">
+                    <a href="{{ route('landing.panduan-ekaristi') }}" class="font-semibold text-[#8B2C2C] hover:underline">
                         Lihat Informasi
                     </a>
                 </div>
@@ -42,7 +42,7 @@
                 </p>
 
                 <div class="text-center">
-                    <a href="#" class="font-semibold text-[#8B2C2C] hover:underline">
+                    <a href="{{ route('landing.ujud') }}" class="font-semibold text-[#8B2C2C] hover:underline">
                         Lihat Informasi
                     </a>
                 </div>
@@ -78,7 +78,7 @@
                 </p>
 
                 <div class="text-center">
-                    <a href="#" class="font-semibold text-[#8B2C2C] hover:underline">
+                    <a href="{{ route('landing.dokumen-gereja') }}" class="font-semibold text-[#8B2C2C] hover:underline">
                         Lihat Informasi
                     </a>
                 </div>

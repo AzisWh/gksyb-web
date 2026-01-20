@@ -18,6 +18,9 @@ class TerhubungModel extends Model
         'tanggal_kirim',
         'status',
         'isi_pesan',
+        'nama_lengkap',
+        'asal_paroki',
+        'asal_lingkungan',
     ];
 
     public function user()

@@ -275,4 +275,23 @@ body {
     max-height: 300px;
 }
 
+.badge {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-transform: uppercase;
+}
+
+.badge-published {
+    background-color: #16a34a; 
+    color: #ffffff;
+}
+
+.badge-draft {
+    background-color: #facc15; 
+    color: #78350f;
+}
+
 

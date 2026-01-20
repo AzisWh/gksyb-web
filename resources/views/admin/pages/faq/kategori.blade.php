@@ -65,7 +65,7 @@
 
                 <form
                     id="delete-{{ $item->id }}"
-                    action="{{ route('admin.kategori.destroy', $item->id) }}"
+                    action="{{ route('admin.faq.kategori.destroy', $item->id) }}"
                     method="POST"
                 >
                     @csrf

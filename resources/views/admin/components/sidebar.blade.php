@@ -1,3 +1,7 @@
+@php
+    $role = auth()->user()->role_type;
+@endphp
+
 <aside
         class="z-20 hidden w-64 overflow-y-auto bg-white shadow md:block shrink-0"
       >
@@ -25,105 +29,110 @@
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
                     }}"
                 >
-                     <svg
-                        class="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                      >
-                          <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
-                      </svg>
+                    <img src="{{ asset('sidebaricon/dashboard.png') }}" class="w-5 h-5" alt="">
 
                     <span class="ml-4">Dashboard</span>
                 </a>
             </li>
           </ul>
-          <ul class="">
-            <p class="text-sm font-thin ml-6 text-gray-500 uppercase">Konten dan publikasi</p>
+         <ul>
+            <p class="text-sm font-thin ml-6 text-gray-500 uppercase">
+                Konten dan publikasi
+            </p>
+
+            @if($role == 2)
             <li class="relative px-6 py-3">
-               @if(request()->routeIs('admin.jadwal.*'))
+                @if(request()->routeIs('admin.bintaran.*'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
                 @endif
-              <a
-                    href="{{ route('admin.jadwal.index') }}"
+
+                <a href="{{ route('admin.bintaran.index') }}"
+                    class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                    {{ request()->routeIs('admin.bintaran.*')
+                        ? 'text-[#3E0703] bg-[#FFF3F2]'
+                        : 'text-gray-700 hover:bg-[#FFF3F2]'
+                    }}">
+
+                    <img src="{{ asset('sidebaricon/doc.png') }}" class="w-5 h-5" alt="">
+                    <span class="ml-4">Tulisan Bintaran</span>
+                </a>
+            </li>
+            @endif
+
+
+            @if(in_array($role, [1,2]))
+            <li class="relative px-6 py-3">
+                @if(request()->routeIs('admin.jadwal.*'))
+                    <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                @endif
+
+                <a href="{{ route('admin.jadwal.index') }}"
                     class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
                     {{ request()->routeIs('admin.jadwal.*')
                         ? 'text-[#3E0703] bg-[#FFF3F2]'
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
-                    }}"
-              >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
-                <span class="ml-4">Jadwal Doa dan Perayaan Ekaristi</span>
-              </a>
+                    }}">
+
+                    <img src="{{ asset('sidebaricon/cal.png') }}" class="w-5 h-5" alt="">
+                    <span class="ml-4">Jadwal Doa dan Perayaan Ekaristi</span>
+                </a>
             </li>
-          </ul>
+            @endif
+
+        </ul>
           <ul class="">
             <p class="text-sm font-thin ml-6 text-gray-500 uppercase">Dokumen dan media</p>
+            @if(in_array($role, [1,2]))
+              <li class="relative px-6 py-3">
+                @if(request()->routeIs('admin.dokparoki.*'))
+                      <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                  @endif
+                <a
+                      href="{{ route('admin.dokparoki.index') }}"
+                      class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                      {{ request()->routeIs('admin.dokparoki.*')
+                          ? 'text-[#3E0703] bg-[#FFF3F2]'
+                          : 'text-gray-700 hover:bg-[#FFF3F2]'
+                      }}">
+                  <img src="{{ asset('sidebaricon/folder.png') }}" class="w-5 h-5" alt="">
+                  <span class="ml-4">Dokumen Paroki</span>
+                </a>
+              </li>
+              <li class="relative px-6 ">
+                @if(request()->routeIs('admin.ekaristi.*'))
+                      <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                  @endif
+                <a
+                      href="{{ route('admin.ekaristi.index') }}"
+                      class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                      {{ request()->routeIs('admin.ekaristi.*')
+                          ? 'text-[#3E0703] bg-[#FFF3F2]'
+                          : 'text-gray-700 hover:bg-[#FFF3F2]'
+                      }}">
+                  <img src="{{ asset('sidebaricon/book.png') }}" class="w-5 h-5" alt="">
+                      
+                  <span class="ml-4">Panduan Perayaan Ekaristi</span>
+                </a>
+              </li>
+            @endif
+            @if($role == 2)
             <li class="relative px-6 py-3">
-               @if(request()->routeIs('admin.dokparoki.*'))
+                @if(request()->routeIs('admin.gallery.*'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
                 @endif
-              <a
-                    href="{{ route('admin.dokparoki.index') }}"
+
+                <a href="{{ route('admin.gallery.index') }}"
                     class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
-                    {{ request()->routeIs('admin.dokparoki.*')
+                    {{ request()->routeIs('admin.gallery.*')
                         ? 'text-[#3E0703] bg-[#FFF3F2]'
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
-                    }}"
-              >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
-                <span class="ml-4">Dokumen Paroki</span>
-              </a>
+                    }}">
+
+                    <img src="{{ asset('sidebaricon/gal.png') }}" class="w-5 h-5" alt="">
+                    <span class="ml-4">Galeri dan Dokumentasi</span>
+                </a>
             </li>
-          </ul>
-          <ul class="">
-            <li class="relative px-6 ">
-               @if(request()->routeIs('admin.ekaristi.*'))
-                    <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
-                @endif
-              <a
-                    href="{{ route('admin.ekaristi.index') }}"
-                    class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
-                    {{ request()->routeIs('admin.ekaristi.*')
-                        ? 'text-[#3E0703] bg-[#FFF3F2]'
-                        : 'text-gray-700 hover:bg-[#FFF3F2]'
-                    }}"
-              >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
-                <span class="ml-4">Panduan Perayaan Ekaristi</span>
-              </a>
-            </li>
+            @endif
           </ul>
           <ul class="mt-6">
             <p class="text-sm font-thin ml-6 text-gray-500 uppercase">Profil gereja</p>
@@ -139,17 +148,8 @@
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
                     }}"
               >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
+                <img src="{{ asset('sidebaricon/home.png') }}" class="w-5 h-5" alt="">
+                
                 <span class="ml-4">Profil Gereja</span>
               </a>
             </li>
@@ -167,18 +167,9 @@
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
                     }}"
               >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
-                <span class="ml-4">Sakramen Gereja Katolik</span>
+                <img src="{{ asset('sidebaricon/plus.png') }}" class="w-5 h-5" alt="">
+                  
+                  <span class="ml-4">Sakramen Gereja Katolik</span>
               </a>
             </li>
           </ul>
@@ -195,17 +186,8 @@
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
                     }}"
               >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
+                <img src="{{ asset('sidebaricon/dollar.png') }}" class="w-5 h-5" alt="">
+                
                 <span class="ml-4">Donasi & Sumbangan</span>
               </a>
             </li>
@@ -223,17 +205,8 @@
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
                     }}"
               >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
+              <img src="{{ asset('sidebaricon/user.png') }}" class="w-5 h-5" alt="">
+
                 <span class="ml-4">Pastor Paroki</span>
               </a>
             </li>
@@ -250,15 +223,8 @@
                     aria-haspopup="true"
                 >
                     <span class="inline-flex items-center">
-                        <svg
-                            class="w-5 h-5"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            viewBox="0 0 24 24"
-                        >
-                            <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
-                        </svg>
+                    <img src="{{ asset('sidebaricon/email.png') }}" class="w-5 h-5" alt="">
+                        
                         <span class="ml-4">Pesan Masuk</span>
                     </span>
 
@@ -309,17 +275,7 @@
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
                     }}"
               >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
+                <img src="{{ asset('sidebaricon/ssd.png') }}" class="w-5 h-5" alt="">
                 <span class="ml-4">Soal Sering Ditanya</span>
               </a>
             </li>
@@ -327,6 +283,25 @@
 
           <ul class="">
             <p class="text-sm font-thin ml-6 text-gray-500 uppercase">Manajemen Sistem</p>
+            @if($role == 2)
+            <li class="relative px-6 py-3">
+               @if(request()->routeIs('admin.role.*'))
+                    <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
+                @endif
+              <a
+                    href="{{ route('admin.role.index') }}"
+                    class="inline-flex items-center w-full text-sm font-medium transition-colors duration-150
+                    {{ request()->routeIs('admin.role.*')
+                        ? 'text-[#3E0703] bg-[#FFF3F2]'
+                        : 'text-gray-700 hover:bg-[#FFF3F2]'
+                    }}"
+              >
+                <img src="{{ asset('sidebaricon/user.png') }}" class="w-5 h-5" alt="">
+                <span class="ml-4">Pengguna dan Hak Akses</span>
+              </a>
+            </li>
+            @endif
+            @if (in_array($role, [1,2]))
             <li class="relative px-6 py-3">
                @if(request()->routeIs('admin.settings.*'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"></span>
@@ -339,20 +314,11 @@
                         : 'text-gray-700 hover:bg-[#FFF3F2]'
                     }}"
               >
-                <svg 
-                  class="w-5 h-5" 
-                  aria-hidden="true" 
-                  fill="none" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" > 
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" ></path> 
-                </svg>
+                <img src="{{ asset('sidebaricon/settings.png') }}" class="w-5 h-5" alt="">
                 <span class="ml-4">Pengaturan Website</span>
               </a>
             </li>
+            @endif
           </ul>
 
           <div class="px-6 my-6">
@@ -362,8 +328,8 @@
                       type="submit"
                       class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-[#3E0703] transition-colors duration-150 bg-purple-500 border border-transparent rounded-lg "
                   >
-                      Logout
-                      <span class="ml-2" aria-hidden="true">+</span>
+                  Logout
+                    <span class="ml-2" aria-hidden="true">+</span>
                   </button>
               </form>
           </div>

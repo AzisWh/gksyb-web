@@ -14,9 +14,13 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\DoaController;
 use App\Http\Controllers\Admin\DokParokiController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\identitasController;
 use App\Http\Controllers\Admin\KategoriDokParoki;
+use App\Http\Controllers\Admin\ManajemenRole;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SosmedController;
+use App\Http\Controllers\Admin\TulisanBintaranController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +37,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
+Route::get('/panduan-ekaristi', [LandingController::class, 'panduanEkaristi'])->name('landing.panduan-ekaristi');
+Route::get('/download-panduan-ekaristi/{id}', [LandingController::class, 'downloadPanduanEkaristi'])->name('landing.download.panduan-ekaristi');
+Route::get('/dokumen-gereja', [LandingController::class, 'dokumenGereja'])->name('landing.dokumen-gereja');
+
 Route::get('/sejarah', [LandingController::class, 'sejarah'])->name('landing.sejarah');
 Route::get('/gembala', [LandingController::class, 'gembala'])->name('landing.gembala');
 Route::get('/doa', [LandingController::class, 'doa'])->name('landing.doa');
@@ -42,6 +50,13 @@ Route::get('/contact', [LandingController::class, 'contact'])->name('landing.con
 Route::get('/ssd', [LandingController::class, 'ssd'])->name('landing.ssd');
 Route::get('/donasi', [LandingController::class, 'donasi'])->name('landing.donasi');
 
+Route::get('/ujud', [LandingController::class, 'ujud'])->name('landing.ujud');
+Route::post('/ujud/store', [LandingController::class, 'storeUjud'])->name('landing.ujud.store');
+
+
+Route::get('/sakramen/detail/{id}', [LandingController::class, 'detailSakramen'])->name('landing.sakramen.detail');
+Route::post('/contact/store', [LandingController::class, 'storeContact'])->name('landing.contact.store');
+
 Route::get('/auth-login', [AuthController::class, 'index'])->name('login.index');
 Route::post('/auth-login', [AuthController::class, 'login'])->name('login.authenticate');
 Route::post('/auth-logout', [AuthController::class, 'logout'])->name('logout');
@@ -50,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:0'])->group(function () {
         
     });
-    Route::middleware(['role:1'])->group(function () {
+    Route::middleware(['role:1,2'])->group(function () {
         Route::get('/admin-dashboard',[DashboardAdminController::class, 'index'])->name('admin.dashboard.index');
 
         Route::prefix('admin-jadwal')->name('admin.jadwal.')->controller(AdminJadwalController::class)->group(function(){
@@ -161,8 +176,34 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/jam/{id}', [AdminKontakController::class, 'updateJam'])->name('jam.update');
             Route::delete('/jam/{id}', [AdminKontakController::class, 'destroyJam'])->name('jam.destroy');
         });
+
+        Route::post('/admin-sosmed/store', [SosmedController::class, 'store'])->name('admin.sosmed.store');
+        Route::post('/admin-seo/store', [SosmedController::class, 'storeSeo'])->name('admin.seo.store');
+
+        Route::prefix('admin-tulisan-bintaran')->name('admin.bintaran.')->controller(TulisanBintaranController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/kategori/store', 'storeKategori')->name('kategori.store');
+            Route::patch('/kategori/update/{id}', 'updateKategori')->name('kategori.update');
+            Route::delete('/kategori/destroy/{id}', 'deleteKategori')->name('kategori.destroy');
+            // tulisan
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{id}', 'update')->name('update');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('admin-gallery')->name('admin.gallery.')->controller(GalleryController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+        });
+        
+        Route::prefix('admin-manajemen-role')->name('admin.role.')->controller(ManajemenRole::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/update/{id}', 'update')->name('update');
+            Route::delete('/delete/{id}', 'destroy')->name('delete');
+        });
     });
     Route::middleware(['role:2'])->group(function () {
-
+      
     });
 });

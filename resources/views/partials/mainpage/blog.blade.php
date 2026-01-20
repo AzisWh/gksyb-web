@@ -1,4 +1,4 @@
-<section class="w-full py-16  fs-style-manrope" data-aos="fade-up">
+<section class="w-full py-16 fs-style-manrope" data-aos="fade-up">
     <div class="container mx-auto px-4">
 
         <!-- Header -->
@@ -11,91 +11,141 @@
             </p>
         </div>
 
-        <!-- Grid Container -->
+        @php
+            $besar = $bintaran[0] ?? null;
+            $kecil1 = $bintaran[1] ?? null;
+            $kecil2 = $bintaran[2] ?? null;
+
+            function warnaKategori($nama) {
+                $n = strtolower($nama ?? '');
+                if(str_contains($n, 'warta')) return 'bg-purple-100 text-purple-800';
+                if(str_contains($n, 'katekese')) return 'bg-green-100 text-green-700';
+                if(str_contains($n, 'berita')) return 'bg-yellow-100 text-yellow-700';
+                return 'bg-gray-100 text-gray-700';
+            }
+        @endphp
+
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <!-- CARD BESAR (LEFT) -->
+            {{-- ========== CARD BESAR ========== --}}
             <div class="lg:col-span-2">
-                <div class="">
-                    <img src="{{ asset('/assets/paroki.png') }}" class="w-full h-64 md:h-80 object-cover rounded-xl mb-4" alt="Artikel Besar">
+            @if($besar)
+                <div>
+                    <img
+                        src="{{ $besar->image 
+                                ? asset('storage/BintaranImage/'.$besar->image) 
+                                : asset('/assets/ekm.png') }}"
+                        class="w-full h-64 md:h-80 object-cover rounded-xl mb-4"
+                        onerror="this.src='{{ asset('/assets/ekm.png') }}'"
+                        alt="Artikel">
 
                     <div class="flex items-center gap-3 mb-2">
-                        <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Warta Paroki</span>
-                        <span class="text-sm text-gray-500">1 Jan 2023</span>
+                        <span class="px-3 py-1 text-xs rounded-full {{ warnaKategori($besar->kategoriBintaran->nama_kategori ?? '') }}">
+                            {{ $besar->kategoriBintaran->nama_kategori ?? 'Umum' }}
+                        </span>
+
+                        <span class="text-sm text-gray-500">
+                            {{ $besar->created_at->format('d M Y') }}
+                        </span>
                     </div>
 
                     <h3 class="text-xl md:text-2xl font-semibold text-[#3A0D0D] mb-2">
-                        Warta Paroki Minggu, 11 Januari 2026
+                        {{ $besar->judul_tulisan }}
                     </h3>
 
                     <p class="text-sm text-[#3A0D0D] opacity-70 mb-4">
-                        Lorem ipsum dolor sit amet consectetur. Mauris natoque ornare tellus volutpat egestas. 
-                        Amet auctor placerat mi sed scelerisque ipsum. Aliquam ipsum facilisi at morbi ut tincidunt. 
-                        Sit phasellus laoreet nunc pellentesque est imperdiet.
+                        {{ $besar->ringkasan }}
                     </p>
 
-                    <a href="#" class="inline-flex items-center gap-2 text-[#3A0D0D] font-semibold hover:underline">
+                    <a href="#"
+                    class="inline-flex items-center gap-2 text-[#3A0D0D] font-semibold hover:underline">
                         Baca Selengkapnya
                         <span>↗</span>
                     </a>
                 </div>
+            @else
+                <p class="text-center text-gray-500">Belum ada tulisan</p>
+            @endif
             </div>
 
-            <!-- CARD KECIL 1 -->
+            {{-- ========== CARD KECIL ========== --}}
             <div class="flex flex-col gap-6">
 
-                <div class="">
-                    <img src="{{ asset('/assets/permenungan.png') }}" class="w-full h-40 object-cover rounded-xl mb-4" alt="Artikel 1">
+                {{-- KECIL 1 --}}
+                @if($kecil1)
+                <div>
+                    <img src="{{ $kecil1->image 
+                                ? asset('storage/BintaranImage/'.$kecil1->image) 
+                                : asset('/assets/ekm.png') }}"
+                        onerror="this.src='{{ asset('/assets/ekm.png') }}'"
+                        class="w-full h-40 object-cover rounded-xl mb-4">
 
                     <div class="flex items-center gap-3 mb-2">
-                        <span class="px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full">Katekese</span>
-                        <span class="text-sm text-gray-500">1 Jan 2023</span>
+                        <span class="px-3 py-1 text-xs rounded-full {{ warnaKategori($kecil1->kategoriBintaran->nama_kategori ?? '') }}">
+                            {{ $kecil1->kategoriBintaran->nama_kategori ?? 'Umum' }}
+                        </span>
+
+                        <span class="text-sm text-gray-500">
+                            {{ $kecil1->created_at->format('d M Y') }}
+                        </span>
                     </div>
 
                     <h4 class="text-lg font-semibold text-[#3A0D0D] mb-2">
-                        Pernenungan Kisah Sengsara Tuhan Yesus
+                        {{ $kecil1->judul_tulisan }}
                     </h4>
 
                     <p class="text-sm text-[#3A0D0D] opacity-70 mb-4 line-clamp-3">
-                        Lorem ipsum dolor sit amet consectetur. Ultrices aliquam at sed eu tortor est. Viverra nisl volutpat ...
+                        {{ $kecil1->ringkasan }}
                     </p>
 
                     <a href="#" class="inline-flex items-center gap-2 text-[#3A0D0D] font-semibold hover:underline">
-                        Baca Selengkapnya
-                        <span>↗</span>
+                        Baca Selengkapnya ↗
                     </a>
                 </div>
+                @endif
 
-                <!-- CARD KECIL 2 -->
-                <div class="">
-                    <img src="{{ asset('/assets/ekm.png') }}" class="w-full h-40 object-cover rounded-xl mb-4" alt="Artikel 2">
+                {{-- KECIL 2 --}}
+                @if($kecil2)
+                <div>
+                    <img
+                        src="{{ $kecil2->image 
+                                ? asset('storage/BintaranImage/'.$kecil2->image) 
+                                : asset('/assets/ekm.png') }}"
+                        class="w-full h-40 object-cover rounded-xl mb-4"
+                        onerror="this.src='{{ asset('/assets/ekm.png') }}'">
 
                     <div class="flex items-center gap-3 mb-2">
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs rounded-full">Berita</span>
-                        <span class="text-sm text-gray-500">1 Jan 2023</span>
+                        <span class="px-3 py-1 text-xs rounded-full {{ warnaKategori($kecil2->kategoriBintaran->nama_kategori ?? '') }}">
+                            {{ $kecil2->kategoriBintaran->nama_kategori ?? 'Umum' }}
+                        </span>
+
+                        <span class="text-sm text-gray-500">
+                            {{ $kecil2->created_at->format('d M Y') }}
+                        </span>
                     </div>
 
                     <h4 class="text-lg font-semibold text-[#3A0D0D] mb-2">
-                        EKM Doenia OMK #8 oleh OMK Kevikepan Jogtim
+                        {{ $kecil2->judul_tulisan }}
                     </h4>
 
                     <p class="text-sm text-[#3A0D0D] opacity-70 mb-4 line-clamp-3">
-                        Lorem ipsum dolor sit amet consectetur. Ultrices aliquam at sed eu tortor est.
+                        {{ $kecil2->ringkasan }}
                     </p>
 
                     <a href="#" class="inline-flex items-center gap-2 text-[#3A0D0D] font-semibold hover:underline">
-                        Baca Selengkapnya
-                        <span>↗</span>
+                        Baca Selengkapnya ↗
                     </a>
                 </div>
+                @endif
 
             </div>
-
         </div>
 
         <!-- Button -->
         <div class="text-center mt-12">
-            <a href="#" class="btn-accent px-6 py-3 rounded-full text-white font-semibold bg-[#8B2C2C] hover:bg-[#701f1f] transition">
+            <a href="#"
+            class="px-6 py-3 rounded-full text-white font-semibold transition"
+            style="background-color:#8B2C2C;">
                 Lihat Tulisan Bintaran
             </a>
         </div>

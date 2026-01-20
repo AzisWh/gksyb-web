@@ -5,7 +5,7 @@
 @endsection
 
 @section('hero-title')
-    Gereja Katolik Santo Yusup Bintaran
+    {{ $data->nama_gereja ?? 'Gereja Santo Yusup Bintaran' }}
 @endsection
 
 @section('hero-desc')

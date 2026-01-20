@@ -33,12 +33,12 @@
 
         <!-- Right form column -->
         <div class="w-full">
-            <form action="#" method="POST" class=" border rounded-lg p-6 sm:p-8 shadow-sm" style="border-color:var(--clr-secondary);">
+            <form action="{{ route('landing.contact.store') }}" method="POST" class=" border rounded-lg p-6 sm:p-8 shadow-sm" style="border-color:var(--clr-secondary);">
                 @csrf
                 <div class="grid grid-cols-1 gap-4">
                     <div>
-                        <label class="block text-xs text-gray-600 mb-1" for="name">Nama Lengkap</label>
-                        <input id="name" name="name" type="text" placeholder="Masukkan Nama Lengkap Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
+                        <label class="block text-xs text-gray-600 mb-1" for="nama_lengkap">Nama Lengkap</label>
+                        <input id="nama_lengkap" name="nama_lengkap" type="text" placeholder="Masukkan Nama Lengkap Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -47,25 +47,25 @@
                             <input id="email" name="email" type="email" placeholder="Masukkan Email Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
                         </div>
                         <div>
-                            <label class="block text-xs text-gray-600 mb-1" for="phone">Nomor Telepon</label>
-                            <input id="phone" name="phone" type="text" placeholder="Masukkan Nomor Telepon Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
+                            <label class="block text-xs text-gray-600 mb-1" for="nomor_telepon">Nomor Telepon</label>
+                            <input id="nomor_telepon" name="nomor_telepon" type="text" placeholder="Masukkan Nomor Telepon Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs text-gray-600 mb-1" for="paroki">Asal Paroki</label>
-                            <input id="paroki" name="paroki" type="text" placeholder="Masukkan Asal Paroki Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
+                            <label class="block text-xs text-gray-600 mb-1" for="asal_paroki">Asal Paroki</label>
+                            <input id="asal_paroki" name="asal_paroki" type="text" placeholder="Masukkan Asal Paroki Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
                         </div>
                         <div>
-                            <label class="block text-xs text-gray-600 mb-1" for="lingkungan">Asal Lingkungan</label>
-                            <input id="lingkungan" name="lingkungan" type="text" placeholder="Masukkan Asal Lingkungan Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
+                            <label class="block text-xs text-gray-600 mb-1" for="asal_lingkungan">Asal Lingkungan</label>
+                            <input id="asal_lingkungan" name="asal_lingkungan" type="text" placeholder="Masukkan Asal Lingkungan Anda" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]" />
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs text-gray-600 mb-1" for="message">Pesan Anda</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Bagaimana kami bisa membantu Anda?" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]"></textarea>
+                        <label class="block text-xs text-gray-600 mb-1" for="isi_pesan">Pesan Anda</label>
+                        <textarea id="isi_pesan" name="isi_pesan" rows="4" placeholder="Bagaimana kami bisa membantu Anda?" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#3E0703]"></textarea>
                     </div>
 
                     <div class="pt-2">

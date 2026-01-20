@@ -1,3 +1,7 @@
+@php
+    $role = auth()->user()->role_type;
+@endphp
+
 <div
         x-show="isSideMenuOpen"
         x-transition:enter="transition ease-in-out duration-150"
@@ -60,89 +64,147 @@
           </ul>
           <ul class="mt-6">
             <p class="text-sm font-thin text-center text-gray-500 uppercase">Konten dan publikasi</p>
-            <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
-                href="{{ route('admin.jadwal.index') }}"
-              >
-                <svg
-                  class="w-5 h-5"
+            @if($role == 2)
+              <li class="relative px-6 py-3">
+                <span
+                  class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
                   aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                ></span>
+                <a
+                  class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
+                  href="{{ route('admin.bintaran.index') }}"
                 >
-                  <path
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  ></path>
-                </svg>
-                <span class="ml-4">Jadwal Doa dan Perayaan Ekaristi</span>
-              </a>
-            </li>
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    ></path>
+                  </svg>
+                  <span class="ml-4">Tulisan Bintaran</span>
+                </a>
+              </li>
+            @endif
+            @if(in_array($role, [1,2]))
+              <li class="relative px-6 py-3">
+                <span
+                  class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
+                  aria-hidden="true"
+                ></span>
+                <a
+                  class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
+                  href="{{ route('admin.jadwal.index') }}"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    ></path>
+                  </svg>
+                  <span class="ml-4">Jadwal Doa dan Perayaan Ekaristi</span>
+                </a>
+              </li>
+              @endif
           </ul>
           <ul class="mt-6">
             <p class="text-sm font-thin text-center text-gray-500 uppercase">Dokumen dan media</p>
-            <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
-                href="{{ route('admin.dokparoki.index') }}"
-              >
-                <svg
-                  class="w-5 h-5"
+            @if(in_array($role, [1,2]))
+              <li class="relative px-6 py-3">
+                <span
+                  class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
                   aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                ></span>
+                <a
+                  class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
+                  href="{{ route('admin.dokparoki.index') }}"
                 >
-                  <path
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  ></path>
-                </svg>
-                <span class="ml-4">Dokumen Paroki</span>
-              </a>
-            </li>
-          </ul>
-          <ul class="">
-            <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
-                href="{{ route('admin.ekaristi.index') }}"
-              >
-                <svg
-                  class="w-5 h-5"
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    ></path>
+                  </svg>
+                  <span class="ml-4">Dokumen Paroki</span>
+                </a>
+              </li>
+              <li class="relative px-6 py-3">
+                <span
+                  class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
                   aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                ></span>
+                <a
+                  class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
+                  href="{{ route('admin.ekaristi.index') }}"
                 >
-                  <path
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  ></path>
-                </svg>
-                <span class="ml-4">Panduan Perayaan Ekaristi</span>
-              </a>
-            </li>
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    ></path>
+                  </svg>
+                  <span class="ml-4">Panduan Perayaan Ekaristi</span>
+                </a>
+              </li>
+            @endif
+            @if($role == 2)
+             <li class="relative px-6 py-3">
+                <span
+                  class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
+                  aria-hidden="true"
+                ></span>
+                <a
+                  class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
+                  href="{{ route('admin.gallery.index') }}"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    ></path>
+                  </svg>
+                  <span class="ml-4">Galeri dan Dokumentasi</span>
+                </a>
+              </li>
+            @endif
           </ul>
             <p class="text-sm font-thin text-center text-gray-500 uppercase">Profil Gereja</p>
           
@@ -354,6 +416,36 @@
           </ul>
           <ul>
             <p class="text-sm font-thin text-center text-gray-500 uppercase">Manajemen Sistem</p>
+            @if($role == 2)
+            <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"
+              ></span>
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold text-[#3E0703] transition-colors duration-150  "
+                href="{{ route('admin.role.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  ></path>
+                </svg>
+                <span class="ml-4">Pengguna dan Hak Akses</span>
+              </a>
+            </li>
+            @endif
+
+            @if(in_array($role, [1,2]))
             <li class="relative px-6 py-3">
               <span
                 class="absolute inset-y-0 left-0 w-1 bg-[#3E0703] rounded-tr-lg rounded-br-lg"
@@ -380,6 +472,7 @@
                 <span class="ml-4">Pengaturan Website</span>
               </a>
             </li>
+            @endif
           </ul>
 
           <div class="px-6 my-6">
